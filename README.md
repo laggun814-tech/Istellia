@@ -16,6 +16,7 @@ table, th, td { border: 1px solid #ccc; }
 th, td { padding: 8px 10px; text-align: left; font-size: 15px;}
 #welcome { margin-top: 22px; font-size: 18px; font-weight: bold; color: #4a6cf7; }
 .logo { max-width: 120px; margin-bottom: 15px; }
+.remaining { font-size: 12px; color: #555; margin-left: auto; }
 </style>
 </head>
 <body>
@@ -42,39 +43,29 @@ th, td { padding: 8px 10px; text-align: left; font-size: 15px;}
 
 <div class="courses">
 <h3>과목 선택 (정원 6명)</h3>
+
 <h4>공통</h4>
 <label><input type="checkbox" value="드래곤 알 키우기" class="course" data-max="6" data-element="공통"> 드래곤 알 키우기 <span class="remaining"></span></label>
 <label><input type="checkbox" value="초능력의 역사" class="course" data-max="6" data-element="공통"> 초능력의 역사 <span class="remaining"></span></label>
 <label><input type="checkbox" value="능력이 파생되는 조건 이론" class="course" data-max="6" data-element="공통"> 능력이 파생되는 조건 이론 <span class="remaining"></span></label>
-<label><input type="checkbox" value="약초 학개론" class="course" data-max="6" data-element="공통"> 약초 학개론 <span class="remaining"></span></label>
-<label><input type="checkbox" value="기숙사별 역사" class="course" data-max="6" data-element="공통"> 기숙사별 역사 <span class="remaining"></span></label>
-<label><input type="checkbox" value="마나 및 체력 조절 강의" class="course" data-max="6" data-element="공통"> 마나 및 체력 조절 강의 <span class="remaining"></span></label>
 
 <h4>불</h4>
 <label><input type="checkbox" value="기초 염화학" class="course" data-max="6" data-element="불"> 기초 염화학 <span class="remaining"></span></label>
 <label><input type="checkbox" value="화염 제어술식" class="course" data-max="6" data-element="불"> 화염 제어술식 <span class="remaining"></span></label>
-<label><input type="checkbox" value="방화장벽과 투사술" class="course" data-max="6" data-element="불"> 방화장벽과 투사술 <span class="remaining"></span></label>
-<label><input type="checkbox" value="전투화염술" class="course" data-max="6" data-element="불"> 전투화염술 <span class="remaining"></span></label>
 
 <h4>물</h4>
 <label><input type="checkbox" value="기초 수계 조작학" class="course" data-max="6" data-element="물"> 기초 수계 조작학 <span class="remaining"></span></label>
 <label><input type="checkbox" value="상태 변화 이해" class="course" data-max="6" data-element="물"> 상태 변화 이해 <span class="remaining"></span></label>
-<label><input type="checkbox" value="심화조작" class="course" data-max="6" data-element="물"> 심화조작 <span class="remaining"></span></label>
 
 <h4>풀</h4>
 <label><input type="checkbox" value="풀정령학" class="course" data-max="6" data-element="풀"> 풀정령학 <span class="remaining"></span></label>
 <label><input type="checkbox" value="허브학" class="course" data-max="6" data-element="풀"> 허브학 <span class="remaining"></span></label>
-<label><input type="checkbox" value="독초·맹독학" class="course" data-max="6" data-element="풀"> 독초·맹독학 <span class="remaining"></span></label>
 
 <h4>바람</h4>
-<label><input type="checkbox" value="마나 상관이론" class="course" data-max="6" data-element="바람"> 마나 상관이론 <span class="remaining"></span></label>
 <label><input type="checkbox" value="바람 조작론" class="course" data-max="6" data-element="바람"> 바람 조작론 <span class="remaining"></span></label>
-<label><input type="checkbox" value="바람깃 기동술" class="course" data-max="6" data-element="바람"> 바람깃 기동술 <span class="remaining"></span></label>
 
 <h4>전기</h4>
-<label><input type="checkbox" value="마나 전도학" class="course" data-max="6" data-element="전기"> 마나 전도학 <span class="remaining"></span></label>
 <label><input type="checkbox" value="낙뢰 유도법" class="course" data-max="6" data-element="전기"> 낙뢰 유도법 <span class="remaining"></span></label>
-<label><input type="checkbox" value="섬광 사격화" class="course" data-max="6" data-element="전기"> 섬광 사격화 <span class="remaining"></span></label>
 
 </div>
 
@@ -105,15 +96,14 @@ const welcomeDiv = document.getElementById("welcome");
 const githubUser = "username";   // GitHub 계정
 const githubRepo = "repo";       // 저장소 이름
 const filePath = "responses.json";
-const githubToken = "ghp_XXXXXXXXXXXXXXXXXXXX"; // GitHub Personal Access Token
+const githubToken = "ghp_XXXXXXXXXXXXXXXXXXXX"; // Personal Access Token
 const apiUrl = `https://api.github.com/repos/${githubUser}/${githubRepo}/contents/${filePath}`;
 
 let courseCounts = {};
-
-// 초기 과목별 잔여
 document.querySelectorAll(".course").forEach(c => { courseCounts[c.value]=0; });
 
-async function loadSharedList(){
+// GitHub에서 데이터 불러오기
+async function loadResponses(){
     try{
         const res = await fetch(`https://raw.githubusercontent.com/${githubUser}/${githubRepo}/main/${filePath}`);
         const data = await res.json();
@@ -130,7 +120,11 @@ async function loadSharedList(){
         });
         updateRemaining();
         return data;
-    } catch(err){ console.error(err); return []; }
+    } catch(err){
+        console.error(err);
+        tableBody.innerHTML="<tr><td colspan='4'>데이터 로드 실패</td></tr>";
+        return [];
+    }
 }
 
 function updateRemaining(){
@@ -153,7 +147,7 @@ document.querySelectorAll(".course").forEach(c=>{
 });
 
 // GitHub 저장
-async function saveToGitHub(newData){
+async function saveResponses(newData){
     try{
         const fileRes = await fetch(apiUrl, { headers: { Authorization:`token ${githubToken}` } });
         const fileData = await fileRes.json();
@@ -161,19 +155,16 @@ async function saveToGitHub(newData){
         await fetch(apiUrl, {
             method: "PUT",
             headers: {
-                Authorization: `token ${githubToken}`,
-                "Content-Type": "application/json"
+                Authorization:`token ${githubToken}`,
+                "Content-Type":"application/json"
             },
             body: JSON.stringify({
-                message: "수강신청 업데이트",
-                content: btoa(unescape(encodeURIComponent(JSON.stringify(newData,null,2)))),
-                sha: sha
+                message:"수강신청 업데이트",
+                content:btoa(unescape(encodeURIComponent(JSON.stringify(newData,null,2)))),
+                sha:sha
             })
         });
-    } catch(err){
-        console.error(err);
-        alert("GitHub 저장 실패! 토큰과 권한을 확인하세요.");
-    }
+    } catch(err){ console.error(err); alert("GitHub 저장 실패"); }
 }
 
 // 제출
@@ -187,19 +178,16 @@ form.addEventListener("submit", async function(e){
     document.querySelectorAll(".course").forEach(c=>{ if(c.checked) selectedCourses.push(c.value); });
     if(selectedCourses.length===0){ alert("적어도 한 과목은 선택해야 합니다!"); return; }
 
-    const existingData = await loadSharedList();
-    existingData.push({name, grade, element, courses:selectedCourses});
-
-    await saveToGitHub(existingData);
-
-    // 테이블 갱신
-    await loadSharedList();
+    const data = await loadResponses();
+    data.push({name, grade, element, courses:selectedCourses});
+    await saveResponses(data);
+    await loadResponses();
     form.reset();
     welcomeDiv.innerText="이스텔리아 아카데미에서 뵙겠습니다.";
 });
 
 // 초기 로드
-window.addEventListener("load", loadSharedList);
+window.addEventListener("load", loadResponses);
 </script>
 
 </body>
