@@ -11,7 +11,7 @@ label { display: block; margin-top: 12px; font-weight: bold; }
 input[type="text"], input[type="number"], select { width: 100%; padding: 8px; margin-top: 4px; border: 1px solid #ccc; border-radius: 6px; }
 .courses label { font-weight: normal; display: flex; align-items: center; gap: 8px; margin-top: 5px; }
 .submit-btn { margin-top: 20px; width: 100%; padding: 12px; background: #4a6cf7; border: none; border-radius: 8px; font-size: 16px; color: white; cursor: pointer; }
-#resetBtn { margin-top: 15px; width: 100%; padding: 10px; background: #f74a4a; border: none; border-radius: 8px; color: white; cursor: pointer; font-size: 14px; }
+#resetBtn { margin-top: 15px; width: 100%; padding: 12px; background: #f74a4a; border: none; border-radius: 8px; color: white; cursor: pointer; font-size: 16px; }
 table { width: 100%; border-collapse: collapse; margin-top: 25px; }
 table, th, td { border: 1px solid #ccc; }
 th, td { padding: 6px 8px; text-align: left; }
@@ -80,7 +80,7 @@ th, td { padding: 6px 8px; text-align: left; }
 </div>
 
 <button class="submit-btn" type="submit">수강신청 제출</button>
-<button id="resetBtn">기록 초기화 (관리자용)</button>
+<button id="resetBtn" type="button">기록 초기화 (관리자용)</button>
 </form>
 
 <div id="welcome"></div>
