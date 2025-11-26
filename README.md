@@ -173,7 +173,7 @@ th, td {
 <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
 
 <script>
-// ★★★★★★★ Firebase 설정 (바로 사용 가능) ★★★★★★★
+// ★★★★★★★ Firebase 설정 ★★★★★★★
 const firebaseConfig = {
     apiKey: "AIzaSyD-JW2EJbG1GyBd71srW8IoTlX0yn6SfTs",
     authDomain: "istel-academy.firebaseapp.com",
@@ -184,18 +184,27 @@ const firebaseConfig = {
     appId: "1:1029384756:web:abcdef1234567890"
 };
 firebase.initializeApp(firebaseConfig);
-
 const db = firebase.database();
 
-// 테이블 / 잔여 카운트 실시간 반영
-const tableBody = document.querySelector("#responsesTable tbody");
-const courseCounts = {};
+// 🌟 정원 설정
+const MAX_CAPACITY = 6;
 
-// 실시간 업데이트
+// 🌟 모든 과목 목록 수집
+const allCourses = [...document.querySelectorAll(".course")].map(c => c.value);
+
+// 🌟 과목 카운트 초기화
+let courseCounts = {};
+allCourses.forEach(name => { courseCounts[name] = 0; });
+
+// 테이블
+const tableBody = document.querySelector("#responsesTable tbody");
+
+// 🌟 Firebase 실시간 반영
 db.ref("responses").on("value", snapshot => {
     const data = snapshot.val() || {};
+
     tableBody.innerHTML = "";
-    Object.keys(courseCounts).forEach(k => courseCounts[k]=0);
+    allCourses.forEach(name => courseCounts[name] = 0);
 
     Object.values(data).forEach(entry => {
         const row = tableBody.insertRow();
@@ -203,58 +212,75 @@ db.ref("responses").on("value", snapshot => {
         row.insertCell().innerText = entry.grade;
         row.insertCell().innerText = entry.element;
         row.insertCell().innerText = entry.courses.join(", ");
-        entry.courses.forEach(c => courseCounts[c]++);
+
+        entry.courses.forEach(course => {
+            courseCounts[course]++;
+        });
     });
 
     updateRemaining();
 });
 
-// 잔여 업데이트
-function updateRemaining(){
-    document.querySelectorAll(".course").forEach(c=>{
+// 🌟 잔여 표시 + 정원 제한
+function updateRemaining() {
+    document.querySelectorAll(".course").forEach(c => {
         const name = c.value;
-        const count = courseCounts[name] || 0;
-        const remain = 6 - count;
-        c.parentElement.querySelector(".remaining").innerText = `(잔여: ${remain}명)`;
-        c.disabled = remain <= 0;
+        const count = courseCounts[name];
+        const remain = MAX_CAPACITY - count;
+
+        c.parentElement.querySelector(".remaining").innerText =
+            `(잔여: ${remain}명)`;
+
+        if (remain <= 0) {
+            c.disabled = true;
+            c.parentElement.style.opacity = "0.5";
+        } else {
+            c.disabled = false;
+            c.parentElement.style.opacity = "1";
+        }
     });
 }
 
-// 제출
-document.querySelector("#courseForm").addEventListener("submit", e=>{
+// 🌟 제출
+document.querySelector("#courseForm").addEventListener("submit", e => {
     e.preventDefault();
 
-    const name = document.getElementById("name").value;
+    const name = document.getElementById("name").value.trim();
     const grade = document.getElementById("grade").value;
     const element = document.getElementById("element").value;
 
     const selected = [];
-    document.querySelectorAll(".course").forEach(c=>{
-        if(c.checked) selected.push(c.value);
+    document.querySelectorAll(".course").forEach(c => {
+        if (c.checked) selected.push(c.value);
     });
 
-    if(selected.length === 0){
-        alert("한 과목 이상 선택해야 합니다!");
-        return;
+    if (!name) return alert("이름을 입력하세요!");
+    if (selected.length === 0) return alert("한 과목 이상 선택하세요!");
+
+    // 정원 체크
+    for (let course of selected) {
+        if (courseCounts[course] >= MAX_CAPACITY) {
+            return alert(`"${course}" 과목은 정원이 모두 찼습니다!`);
+        }
     }
 
-    const newRef = db.ref("responses").push();
-    newRef.set({ name, grade, element, courses: selected });
+    db.ref("responses").push().set({
+        name, grade, element, courses: selected
+    });
 
-    alert("수강신청이 완료되었습니다!");
+    alert("수강신청 완료!");
     document.getElementById("courseForm").reset();
 });
 
-// 초기화
-document.getElementById("resetBtn").addEventListener("click", ()=>{
-    const pw = prompt("관리자 비밀번호를 입력하세요:");
-    if(pw === "이스텔리아123"){
+// 🌟 초기화
+document.getElementById("resetBtn").addEventListener("click", () => {
+    const pw = prompt("관리자 비밀번호:");
+    if (pw === "이스텔리아123") {
         db.ref("responses").remove();
-        alert("전체 기록이 초기화되었습니다!");
-    } else {
-        alert("비밀번호가 틀렸습니다!");
-    }
+        alert("전체 기록이 삭제되었습니다!");
+    } else alert("비밀번호가 틀렸습니다!");
 });
 </script>
+
 </body>
 </html>
