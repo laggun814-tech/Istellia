@@ -118,36 +118,6 @@ const tableBody = document.getElementById("responsesTable").querySelector("tbody
 const elementSelect = document.getElementById("element");
 const welcomeDiv = document.getElementById("welcome");
 
-// GitHub 저장
-async function saveResponses(newData){
-    try{
-        const fileRes = await fetch(apiUrl, { headers: { Authorization:`token ${githubToken}` } });
-        const fileData = await fileRes.json();
-        const sha = fileData.sha;
-        await fetch(apiUrl, {
-            method: "PUT",
-            headers: {
-                Authorization:`token ${githubToken}`,
-                "Content-Type":"application/json"
-            },
-            body: JSON.stringify({
-                message:"수강신청 업데이트",
-                content:btoa(unescape(encodeURIComponent(JSON.stringify(newData,null,2)))),
-                sha:sha
-            })
-        });
-    } catch(err){ console.error(err); alert("GitHub 저장 실패"); }
-}
-
-// 제출
-form.addEventListener("submit", async function(e){
-    e.preventDefault();
-    const name = document.getElementById("name").value;
-    const grade = document.getElementById("grade").value;
-    const element = elementSelect.value;
-
-    const selectedCourses=[];
-
 // 페이지 로드 시 localStorage 복원
 window.addEventListener("load", function(){
     const storedData = JSON.parse(localStorage.getItem("courseResponses") || "[]");
