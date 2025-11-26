@@ -15,6 +15,7 @@ table { width: 100%; border-collapse: collapse; margin-top: 25px; }
 table, th, td { border: 1px solid #ccc; }
 th, td { padding: 6px 8px; text-align: left; }
 #welcome { margin-top: 20px; font-size: 16px; font-weight: bold; color: #4a6cf7; }
+.remaining { font-size: 12px; color: #555; margin-left: auto; }
 </style>
 </head>
 <body>
@@ -42,38 +43,38 @@ th, td { padding: 6px 8px; text-align: left; }
 <h3>과목 선택 (정원 6명)</h3>
 
 <h4>공통</h4>
-<label><input type="checkbox" value="드래곤 알 키우기" class="course" data-max="6" data-element="공통"> 드래곤 알 키우기</label>
-<label><input type="checkbox" value="초능력의 역사" class="course" data-max="6" data-element="공통"> 초능력의 역사</label>
-<label><input type="checkbox" value="능력이 파생되는 조건 이론" class="course" data-max="6" data-element="공통"> 능력이 파생되는 조건 이론</label>
-<label><input type="checkbox" value="약초 학개론" class="course" data-max="6" data-element="공통"> 약초 학개론</label>
-<label><input type="checkbox" value="기숙사별 역사" class="course" data-max="6" data-element="공통"> 기숙사별 역사</label>
-<label><input type="checkbox" value="마나 및 체력 조절 강의" class="course" data-max="6" data-element="공통"> 마나 및 체력 조절 강의</label>
+<label><input type="checkbox" value="드래곤 알 키우기" class="course" data-max="6" data-element="공통"> 드래곤 알 키우기 <span class="remaining"></span></label>
+<label><input type="checkbox" value="초능력의 역사" class="course" data-max="6" data-element="공통"> 초능력의 역사 <span class="remaining"></span></label>
+<label><input type="checkbox" value="능력이 파생되는 조건 이론" class="course" data-max="6" data-element="공통"> 능력이 파생되는 조건 이론 <span class="remaining"></span></label>
+<label><input type="checkbox" value="약초 학개론" class="course" data-max="6" data-element="공통"> 약초 학개론 <span class="remaining"></span></label>
+<label><input type="checkbox" value="기숙사별 역사" class="course" data-max="6" data-element="공통"> 기숙사별 역사 <span class="remaining"></span></label>
+<label><input type="checkbox" value="마나 및 체력 조절 강의" class="course" data-max="6" data-element="공통"> 마나 및 체력 조절 강의 <span class="remaining"></span></label>
 
 <h4>불</h4>
-<label><input type="checkbox" value="기초 염화학" class="course" data-max="6" data-element="불"> 기초 염화학</label>
-<label><input type="checkbox" value="화염 제어술식" class="course" data-max="6" data-element="불"> 화염 제어술식</label>
-<label><input type="checkbox" value="방화장벽과 투사술" class="course" data-max="6" data-element="불"> 방화장벽과 투사술</label>
-<label><input type="checkbox" value="전투화염술" class="course" data-max="6" data-element="불"> 전투화염술</label>
+<label><input type="checkbox" value="기초 염화학" class="course" data-max="6" data-element="불"> 기초 염화학 <span class="remaining"></span></label>
+<label><input type="checkbox" value="화염 제어술식" class="course" data-max="6" data-element="불"> 화염 제어술식 <span class="remaining"></span></label>
+<label><input type="checkbox" value="방화장벽과 투사술" class="course" data-max="6" data-element="불"> 방화장벽과 투사술 <span class="remaining"></span></label>
+<label><input type="checkbox" value="전투화염술" class="course" data-max="6" data-element="불"> 전투화염술 <span class="remaining"></span></label>
 
 <h4>물</h4>
-<label><input type="checkbox" value="기초 수계 조작학" class="course" data-max="6" data-element="물"> 기초 수계 조작학</label>
-<label><input type="checkbox" value="상태 변화 이해" class="course" data-max="6" data-element="물"> 상태 변화 이해</label>
-<label><input type="checkbox" value="심화조작" class="course" data-max="6" data-element="물"> 심화조작</label>
+<label><input type="checkbox" value="기초 수계 조작학" class="course" data-max="6" data-element="물"> 기초 수계 조작학 <span class="remaining"></span></label>
+<label><input type="checkbox" value="상태 변화 이해" class="course" data-max="6" data-element="물"> 상태 변화 이해 <span class="remaining"></span></label>
+<label><input type="checkbox" value="심화조작" class="course" data-max="6" data-element="물"> 심화조작 <span class="remaining"></span></label>
 
 <h4>풀</h4>
-<label><input type="checkbox" value="풀정령학" class="course" data-max="6" data-element="풀"> 풀정령학</label>
-<label><input type="checkbox" value="허브학" class="course" data-max="6" data-element="풀"> 허브학</label>
-<label><input type="checkbox" value="독초·맹독학" class="course" data-max="6" data-element="풀"> 독초·맹독학</label>
+<label><input type="checkbox" value="풀정령학" class="course" data-max="6" data-element="풀"> 풀정령학 <span class="remaining"></span></label>
+<label><input type="checkbox" value="허브학" class="course" data-max="6" data-element="풀"> 허브학 <span class="remaining"></span></label>
+<label><input type="checkbox" value="독초·맹독학" class="course" data-max="6" data-element="풀"> 독초·맹독학 <span class="remaining"></span></label>
 
 <h4>바람</h4>
-<label><input type="checkbox" value="마나 상관이론" class="course" data-max="6" data-element="바람"> 마나 상관이론</label>
-<label><input type="checkbox" value="바람 조작론" class="course" data-max="6" data-element="바람"> 바람 조작론</label>
-<label><input type="checkbox" value="바람깃 기동술" class="course" data-max="6" data-element="바람"> 바람깃 기동술</label>
+<label><input type="checkbox" value="마나 상관이론" class="course" data-max="6" data-element="바람"> 마나 상관이론 <span class="remaining"></span></label>
+<label><input type="checkbox" value="바람 조작론" class="course" data-max="6" data-element="바람"> 바람 조작론 <span class="remaining"></span></label>
+<label><input type="checkbox" value="바람깃 기동술" class="course" data-max="6" data-element="바람"> 바람깃 기동술 <span class="remaining"></span></label>
 
 <h4>전기</h4>
-<label><input type="checkbox" value="마나 전도학" class="course" data-max="6" data-element="전기"> 마나 전도학</label>
-<label><input type="checkbox" value="낙뢰 유도법" class="course" data-max="6" data-element="전기"> 낙뢰 유도법</label>
-<label><input type="checkbox" value="섬광 사격화" class="course" data-max="6" data-element="전기"> 섬광 사격화</label>
+<label><input type="checkbox" value="마나 전도학" class="course" data-max="6" data-element="전기"> 마나 전도학 <span class="remaining"></span></label>
+<label><input type="checkbox" value="낙뢰 유도법" class="course" data-max="6" data-element="전기"> 낙뢰 유도법 <span class="remaining"></span></label>
+<label><input type="checkbox" value="섬광 사격화" class="course" data-max="6" data-element="전기"> 섬광 사격화 <span class="remaining"></span></label>
 
 </div>
 
@@ -99,12 +100,37 @@ th, td { padding: 6px 8px; text-align: left; }
 
 <script>
 const courseCounts = {};
-document.querySelectorAll(".course").forEach(c => courseCounts[c.value]=0);
+document.querySelectorAll(".course").forEach(c => {
+    courseCounts[c.value] = 0;
+});
+
+// 남은 인원 표시
+function updateRemaining() {
+    document.querySelectorAll(".course").forEach(c => {
+        const remaining = c.dataset.max - courseCounts[c.value];
+        c.parentElement.querySelector(".remaining").innerText = `(잔여: ${remaining}명)`;
+        c.disabled = remaining <= 0; // 정원 초과 시 체크 불가
+    });
+}
 
 const form = document.getElementById("courseForm");
 const tableBody = document.getElementById("responsesTable").querySelector("tbody");
 const elementSelect = document.getElementById("element");
 const welcomeDiv = document.getElementById("welcome");
+
+// 페이지 로드 시 localStorage 데이터 복원
+window.addEventListener("load", function() {
+    const storedData = JSON.parse(localStorage.getItem("courseResponses") || "[]");
+    storedData.forEach(entry => {
+        const row = tableBody.insertRow();
+        row.insertCell().innerText = entry.name;
+        row.insertCell().innerText = entry.grade;
+        row.insertCell().innerText = entry.element;
+        row.insertCell().innerText = entry.courses.join(", ");
+        entry.courses.forEach(c => courseCounts[c]++);
+    });
+    updateRemaining();
+});
 
 // 속성별 선택 제한
 document.querySelectorAll(".course").forEach(c => {
@@ -129,7 +155,7 @@ const selectedCourses = [];
 document.querySelectorAll(".course").forEach(c => {
 if(c.checked){
 const courseName = c.value;
-if(courseCounts[courseName]<6){
+if(courseCounts[courseName] < 6){
 courseCounts[courseName]++;
 selectedCourses.push(courseName);
 }else{
@@ -145,12 +171,19 @@ alert("적어도 한 과목은 선택해야 합니다!");
 return;
 }
 
+// 테이블에 추가
 const row = tableBody.insertRow();
 row.insertCell().innerText = name;
 row.insertCell().innerText = grade;
 row.insertCell().innerText = element;
 row.insertCell().innerText = selectedCourses.join(", ");
 
+// localStorage 저장
+const storedData = JSON.parse(localStorage.getItem("courseResponses") || "[]");
+storedData.push({ name, grade, element, courses: selectedCourses });
+localStorage.setItem("courseResponses", JSON.stringify(storedData));
+
+updateRemaining();
 form.reset();
 welcomeDiv.innerText = "이스텔리아 아카데미에서 뵙겠습니다.";
 });
