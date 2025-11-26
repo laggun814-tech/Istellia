@@ -22,7 +22,7 @@ th, td { padding: 6px 8px; text-align: left; }
 <body>
 
 <div class="container">
-<h2>이스텔리아 아카데미 수강신청 폼</h2>
+<h2>이스텔리아 아카데미 수강신청</h2>
 
 <form id="courseForm">
 <label>이름</label>
