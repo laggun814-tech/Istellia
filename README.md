@@ -4,97 +4,25 @@
 <meta charset="UTF-8">
 <title>이스텔리아 아카데미 수강신청</title>
 <style>
-body {
-    font-family: "Noto Sans KR", sans-serif;
-    background: #f5f7fa;
-    padding: 20px;
-}
-.container {
-    background: #fff;
-    max-width: 900px;
-    margin: auto;
-    padding: 30px 40px;
-    border-radius: 16px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-}
-h2 {
-    border-left: 6px solid #4a6cf7;
-    padding-left: 10px;
-    font-size: 30px;
-}
-label {
-    display: block;
-    margin-top: 12px;
-    font-weight: bold;
-    font-size: 18px;
-}
-input[type="text"], input[type="number"], select {
-    width: 100%;
-    padding: 10px;
-    margin-top: 4px;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 16px;
-}
-.courses label {
-    font-weight: normal;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-top: 5px;
-    font-size: 16px;
-}
-.submit-btn {
-    margin-top: 20px;
-    width: 100%;
-    padding: 14px;
-    background: #4a6cf7;
-    border: none;
-    border-radius: 10px;
-    font-size: 18px;
-    color: white;
-    cursor: pointer;
-}
-#resetBtn {
-    margin-top: 15px;
-    width: 100%;
-    padding: 14px;
-    background: #f74a4a;
-    border: none;
-    border-radius: 10px;
-    color: white;
-    cursor: pointer;
-    font-size: 18px;
-}
-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin-top: 25px;
-    font-size: 15px;
-}
-th, td {
-    padding: 8px 10px;
-    border: 1px solid #ccc;
-}
-.remaining {
-    font-size: 13px;
-    color: #444;
-    margin-left: auto;
-}
-.logo {
-    width: 140px;
-    display: block;
-    margin: 15px auto 5px;
-}
+body { font-family: "Noto Sans KR", sans-serif; background: #f5f7fa; padding: 20px; }
+.container { background: #fff; max-width: 850px; margin: auto; padding: 30px 40px; border-radius: 12px; box-shadow: 0 6px 18px rgba(0,0,0,0.12); text-align: center;}
+h2 { border-left: 6px solid #4a6cf7; padding-left: 12px; font-size: 28px; margin-bottom: 10px;}
+label { display: block; margin-top: 14px; font-weight: bold; font-size: 16px;}
+input[type="text"], input[type="number"], select { width: 100%; padding: 10px; margin-top: 6px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px;}
+.courses label { font-weight: normal; display: flex; align-items: center; gap: 10px; margin-top: 6px; font-size: 15px;}
+.submit-btn { margin-top: 25px; width: 100%; padding: 14px; background: #4a6cf7; border: none; border-radius: 8px; font-size: 18px; color: white; cursor: pointer; font-weight: bold; }
+table { width: 100%; border-collapse: collapse; margin-top: 30px; }
+table, th, td { border: 1px solid #ccc; }
+th, td { padding: 8px 10px; text-align: left; font-size: 15px;}
+#welcome { margin-top: 22px; font-size: 18px; font-weight: bold; color: #4a6cf7; }
+.logo { max-width: 120px; margin-bottom: 15px; }
 </style>
 </head>
 <body>
 
 <div class="container">
-
-<img class="logo" src="YOUR_LOGO.png">
-
-<h2>이스텔리아 아카데미 수강신청</h2>
+<img src="https://i.imgur.com/RKbPtQd.png" alt="이스텔리아 로고" class="logo">
+<h2>이스텔리아 아카데미 수강신청 폼</h2>
 
 <form id="courseForm">
 <label>이름</label>
@@ -114,45 +42,46 @@ th, td {
 
 <div class="courses">
 <h3>과목 선택 (정원 6명)</h3>
-
 <h4>공통</h4>
-<label><input type="checkbox" value="드래곤 알 키우기" class="course" data-element="공통"> 드래곤 알 키우기 <span class="remaining"></span></label>
-<label><input type="checkbox" value="초능력의 역사" class="course" data-element="공통"> 초능력의 역사 <span class="remaining"></span></label>
-<label><input type="checkbox" value="능력이 파생되는 조건 이론" class="course" data-element="공통"> 능력이 파생되는 조건 이론 <span class="remaining"></span></label>
-<label><input type="checkbox" value="약초 학개론" class="course" data-element="공통"> 약초 학개론 <span class="remaining"></span></label>
-<label><input type="checkbox" value="기숙사별 역사" class="course" data-element="공통"> 기숙사별 역사 <span class="remaining"></span></label>
-<label><input type="checkbox" value="마나 및 체력 조절 강의" class="course" data-element="공통"> 마나 및 체력 조절 강의 <span class="remaining"></span></label>
+<label><input type="checkbox" value="드래곤 알 키우기" class="course" data-max="6" data-element="공통"> 드래곤 알 키우기 <span class="remaining"></span></label>
+<label><input type="checkbox" value="초능력의 역사" class="course" data-max="6" data-element="공통"> 초능력의 역사 <span class="remaining"></span></label>
+<label><input type="checkbox" value="능력이 파생되는 조건 이론" class="course" data-max="6" data-element="공통"> 능력이 파생되는 조건 이론 <span class="remaining"></span></label>
+<label><input type="checkbox" value="약초 학개론" class="course" data-max="6" data-element="공통"> 약초 학개론 <span class="remaining"></span></label>
+<label><input type="checkbox" value="기숙사별 역사" class="course" data-max="6" data-element="공통"> 기숙사별 역사 <span class="remaining"></span></label>
+<label><input type="checkbox" value="마나 및 체력 조절 강의" class="course" data-max="6" data-element="공통"> 마나 및 체력 조절 강의 <span class="remaining"></span></label>
 
 <h4>불</h4>
-<label><input type="checkbox" value="기초 염화학" class="course" data-element="불"> 기초 염화학 <span class="remaining"></span></label>
-<label><input type="checkbox" value="화염 제어술식" class="course" data-element="불"> 화염 제어술식 <span class="remaining"></span></label>
-<label><input type="checkbox" value="방화장벽과 투사술" class="course" data-element="불"> 방화장벽과 투사술 <span class="remaining"></span></label>
-<label><input type="checkbox" value="전투화염술" class="course" data-element="불"> 전투화염술 <span class="remaining"></span></label>
+<label><input type="checkbox" value="기초 염화학" class="course" data-max="6" data-element="불"> 기초 염화학 <span class="remaining"></span></label>
+<label><input type="checkbox" value="화염 제어술식" class="course" data-max="6" data-element="불"> 화염 제어술식 <span class="remaining"></span></label>
+<label><input type="checkbox" value="방화장벽과 투사술" class="course" data-max="6" data-element="불"> 방화장벽과 투사술 <span class="remaining"></span></label>
+<label><input type="checkbox" value="전투화염술" class="course" data-max="6" data-element="불"> 전투화염술 <span class="remaining"></span></label>
 
 <h4>물</h4>
-<label><input type="checkbox" value="기초 수계 조작학" class="course" data-element="물"> 기초 수계 조작학 <span class="remaining"></span></label>
-<label><input type="checkbox" value="상태 변화 이해" class="course" data-element="물"> 상태 변화 이해 <span class="remaining"></span></label>
-<label><input type="checkbox" value="심화조작" class="course" data-element="물"> 심화조작 <span class="remaining"></span></label>
+<label><input type="checkbox" value="기초 수계 조작학" class="course" data-max="6" data-element="물"> 기초 수계 조작학 <span class="remaining"></span></label>
+<label><input type="checkbox" value="상태 변화 이해" class="course" data-max="6" data-element="물"> 상태 변화 이해 <span class="remaining"></span></label>
+<label><input type="checkbox" value="심화조작" class="course" data-max="6" data-element="물"> 심화조작 <span class="remaining"></span></label>
 
 <h4>풀</h4>
-<label><input type="checkbox" value="풀정령학" class="course" data-element="풀"> 풀정령학 <span class="remaining"></span></label>
-<label><input type="checkbox" value="허브학" class="course" data-element="풀"> 허브학 <span class="remaining"></span></label>
-<label><input type="checkbox" value="독초·맹독학" class="course" data-element="풀"> 독초·맹독학 <span class="remaining"></span></label>
+<label><input type="checkbox" value="풀정령학" class="course" data-max="6" data-element="풀"> 풀정령학 <span class="remaining"></span></label>
+<label><input type="checkbox" value="허브학" class="course" data-max="6" data-element="풀"> 허브학 <span class="remaining"></span></label>
+<label><input type="checkbox" value="독초·맹독학" class="course" data-max="6" data-element="풀"> 독초·맹독학 <span class="remaining"></span></label>
 
 <h4>바람</h4>
-<label><input type="checkbox" value="마나 상관이론" class="course" data-element="바람"> 마나 상관이론 <span class="remaining"></span></label>
-<label><input type="checkbox" value="바람 조작론" class="course" data-element="바람"> 바람 조작론 <span class="remaining"></span></label>
-<label><input type="checkbox" value="바람깃 기동술" class="course" data-element="바람"> 바람깃 기동술 <span class="remaining"></span></label>
+<label><input type="checkbox" value="마나 상관이론" class="course" data-max="6" data-element="바람"> 마나 상관이론 <span class="remaining"></span></label>
+<label><input type="checkbox" value="바람 조작론" class="course" data-max="6" data-element="바람"> 바람 조작론 <span class="remaining"></span></label>
+<label><input type="checkbox" value="바람깃 기동술" class="course" data-max="6" data-element="바람"> 바람깃 기동술 <span class="remaining"></span></label>
 
 <h4>전기</h4>
-<label><input type="checkbox" value="마나 전도학" class="course" data-element="전기"> 마나 전도학 <span class="remaining"></span></label>
-<label><input type="checkbox" value="낙뢰 유도법" class="course" data-element="전기"> 낙뢰 유도법 <span class="remaining"></span></label>
-<label><input type="checkbox" value="섬광 사격화" class="course" data-element="전기"> 섬광 사격화 <span class="remaining"></span></label>
+<label><input type="checkbox" value="마나 전도학" class="course" data-max="6" data-element="전기"> 마나 전도학 <span class="remaining"></span></label>
+<label><input type="checkbox" value="낙뢰 유도법" class="course" data-max="6" data-element="전기"> 낙뢰 유도법 <span class="remaining"></span></label>
+<label><input type="checkbox" value="섬광 사격화" class="course" data-max="6" data-element="전기"> 섬광 사격화 <span class="remaining"></span></label>
+
 </div>
 
 <button class="submit-btn" type="submit">수강신청 제출</button>
-<button id="resetBtn" type="button">기록 초기화 (관리자용)</button>
 </form>
+
+<div id="welcome"></div>
 
 <h3>응답 목록</h3>
 <table id="responsesTable">
@@ -167,119 +96,110 @@ th, td {
 <tbody></tbody>
 </table>
 
-</div>
-
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-<script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-database.js"></script>
-
 <script>
-// ★★★★★★★ Firebase 설정 ★★★★★★★
-const firebaseConfig = {
-    apiKey: "AIzaSyD-JW2EJbG1GyBd71srW8IoTlX0yn6SfTs",
-    authDomain: "istel-academy.firebaseapp.com",
-    databaseURL: "https://istel-academy-default-rtdb.firebaseio.com",
-    projectId: "istel-academy",
-    storageBucket: "istel-academy.appspot.com",
-    messagingSenderId: "1029384756",
-    appId: "1:1029384756:web:abcdef1234567890"
-};
-firebase.initializeApp(firebaseConfig);
-const db = firebase.database();
+const form = document.getElementById("courseForm");
+const tableBody = document.getElementById("responsesTable").querySelector("tbody");
+const elementSelect = document.getElementById("element");
+const welcomeDiv = document.getElementById("welcome");
 
-// 🌟 정원 설정
-const MAX_CAPACITY = 6;
+const githubUser = "username";   // GitHub 계정
+const githubRepo = "repo";       // 저장소 이름
+const filePath = "responses.json";
+const githubToken = "ghp_XXXXXXXXXXXXXXXXXXXX"; // GitHub Personal Access Token
+const apiUrl = `https://api.github.com/repos/${githubUser}/${githubRepo}/contents/${filePath}`;
 
-// 🌟 모든 과목 목록 수집
-const allCourses = [...document.querySelectorAll(".course")].map(c => c.value);
-
-// 🌟 과목 카운트 초기화
 let courseCounts = {};
-allCourses.forEach(name => { courseCounts[name] = 0; });
 
-// 테이블
-const tableBody = document.querySelector("#responsesTable tbody");
+// 초기 과목별 잔여
+document.querySelectorAll(".course").forEach(c => { courseCounts[c.value]=0; });
 
-// 🌟 Firebase 실시간 반영
-db.ref("responses").on("value", snapshot => {
-    const data = snapshot.val() || {};
-
-    tableBody.innerHTML = "";
-    allCourses.forEach(name => courseCounts[name] = 0);
-
-    Object.values(data).forEach(entry => {
-        const row = tableBody.insertRow();
-        row.insertCell().innerText = entry.name;
-        row.insertCell().innerText = entry.grade;
-        row.insertCell().innerText = entry.element;
-        row.insertCell().innerText = entry.courses.join(", ");
-
-        entry.courses.forEach(course => {
-            courseCounts[course]++;
+async function loadSharedList(){
+    try{
+        const res = await fetch(`https://raw.githubusercontent.com/${githubUser}/${githubRepo}/main/${filePath}`);
+        const data = await res.json();
+        tableBody.innerHTML="";
+        courseCounts = {};
+        document.querySelectorAll(".course").forEach(c=>courseCounts[c.value]=0);
+        data.forEach(entry=>{
+            const row = tableBody.insertRow();
+            row.insertCell().innerText = entry.name;
+            row.insertCell().innerText = entry.grade;
+            row.insertCell().innerText = entry.element;
+            row.insertCell().innerText = entry.courses.join(", ");
+            entry.courses.forEach(c=>courseCounts[c]++);
         });
-    });
+        updateRemaining();
+        return data;
+    } catch(err){ console.error(err); return []; }
+}
 
-    updateRemaining();
-});
-
-// 🌟 잔여 표시 + 정원 제한
-function updateRemaining() {
-    document.querySelectorAll(".course").forEach(c => {
-        const name = c.value;
-        const count = courseCounts[name];
-        const remain = MAX_CAPACITY - count;
-
-        c.parentElement.querySelector(".remaining").innerText =
-            `(잔여: ${remain}명)`;
-
-        if (remain <= 0) {
-            c.disabled = true;
-            c.parentElement.style.opacity = "0.5";
-        } else {
-            c.disabled = false;
-            c.parentElement.style.opacity = "1";
-        }
+function updateRemaining(){
+    document.querySelectorAll(".course").forEach(c=>{
+        const remaining = c.dataset.max - (courseCounts[c.value] || 0);
+        c.parentElement.querySelector(".remaining").innerText = `(잔여: ${remaining}명)`;
+        c.disabled = remaining <= 0;
     });
 }
 
-// 🌟 제출
-document.querySelector("#courseForm").addEventListener("submit", e => {
-    e.preventDefault();
-
-    const name = document.getElementById("name").value.trim();
-    const grade = document.getElementById("grade").value;
-    const element = document.getElementById("element").value;
-
-    const selected = [];
-    document.querySelectorAll(".course").forEach(c => {
-        if (c.checked) selected.push(c.value);
-    });
-
-    if (!name) return alert("이름을 입력하세요!");
-    if (selected.length === 0) return alert("한 과목 이상 선택하세요!");
-
-    // 정원 체크
-    for (let course of selected) {
-        if (courseCounts[course] >= MAX_CAPACITY) {
-            return alert(`"${course}" 과목은 정원이 모두 찼습니다!`);
+// 속성 체크
+document.querySelectorAll(".course").forEach(c=>{
+    c.addEventListener("click", function(){
+        const selectedElement = elementSelect.value;
+        if(c.dataset.element !== "공통" && c.dataset.element !== selectedElement){
+            alert("선택한 과목은 본인의 속성과 맞지 않습니다!");
+            c.checked=false;
         }
-    }
-
-    db.ref("responses").push().set({
-        name, grade, element, courses: selected
     });
-
-    alert("수강신청 완료!");
-    document.getElementById("courseForm").reset();
 });
 
-// 🌟 초기화
-document.getElementById("resetBtn").addEventListener("click", () => {
-    const pw = prompt("관리자 비밀번호:");
-    if (pw === "이스텔리아123") {
-        db.ref("responses").remove();
-        alert("전체 기록이 삭제되었습니다!");
-    } else alert("비밀번호가 틀렸습니다!");
+// GitHub 저장
+async function saveToGitHub(newData){
+    try{
+        const fileRes = await fetch(apiUrl, { headers: { Authorization:`token ${githubToken}` } });
+        const fileData = await fileRes.json();
+        const sha = fileData.sha;
+        await fetch(apiUrl, {
+            method: "PUT",
+            headers: {
+                Authorization: `token ${githubToken}`,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                message: "수강신청 업데이트",
+                content: btoa(unescape(encodeURIComponent(JSON.stringify(newData,null,2)))),
+                sha: sha
+            })
+        });
+    } catch(err){
+        console.error(err);
+        alert("GitHub 저장 실패! 토큰과 권한을 확인하세요.");
+    }
+}
+
+// 제출
+form.addEventListener("submit", async function(e){
+    e.preventDefault();
+    const name = document.getElementById("name").value;
+    const grade = document.getElementById("grade").value;
+    const element = elementSelect.value;
+
+    const selectedCourses=[];
+    document.querySelectorAll(".course").forEach(c=>{ if(c.checked) selectedCourses.push(c.value); });
+    if(selectedCourses.length===0){ alert("적어도 한 과목은 선택해야 합니다!"); return; }
+
+    const existingData = await loadSharedList();
+    existingData.push({name, grade, element, courses:selectedCourses});
+
+    await saveToGitHub(existingData);
+
+    // 테이블 갱신
+    await loadSharedList();
+    form.reset();
+    welcomeDiv.innerText="이스텔리아 아카데미에서 뵙겠습니다.";
 });
+
+// 초기 로드
+window.addEventListener("load", loadSharedList);
 </script>
 
 </body>
