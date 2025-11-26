@@ -5,26 +5,24 @@
 <title>이스텔리아 아카데미 수강신청</title>
 <style>
 body { font-family: "Noto Sans KR", sans-serif; background: #f5f7fa; padding: 20px; }
-.container { background: #fff; max-width: 850px; margin: auto; padding: 30px 40px; border-radius: 12px; box-shadow: 0 6px 18px rgba(0,0,0,0.12); text-align: center;}
-h2 { border-left: 6px solid #4a6cf7; padding-left: 12px; font-size: 28px; margin-bottom: 10px;}
-label { display: block; margin-top: 14px; font-weight: bold; font-size: 16px;}
-input[type="text"], input[type="number"], select { width: 100%; padding: 10px; margin-top: 6px; border: 1px solid #ccc; border-radius: 6px; font-size: 15px;}
-.courses label { font-weight: normal; display: flex; align-items: center; gap: 10px; margin-top: 6px; font-size: 15px;}
-.submit-btn { margin-top: 25px; width: 100%; padding: 14px; background: #4a6cf7; border: none; border-radius: 8px; font-size: 18px; color: white; cursor: pointer; font-weight: bold; }
-#resetBtn { margin-top: 15px; width: 100%; padding: 14px; background: #f74a4a; border: none; border-radius: 8px; color: white; cursor: pointer; font-size: 16px; font-weight: bold; }
-table { width: 100%; border-collapse: collapse; margin-top: 30px; }
+.container { background: #fff; max-width: 800px; margin: auto; padding: 25px 35px; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+h2 { border-left: 6px solid #4a6cf7; padding-left: 10px; }
+label { display: block; margin-top: 12px; font-weight: bold; }
+input[type="text"], input[type="number"], select { width: 100%; padding: 8px; margin-top: 4px; border: 1px solid #ccc; border-radius: 6px; }
+.courses label { font-weight: normal; display: flex; align-items: center; gap: 8px; margin-top: 5px; }
+.submit-btn { margin-top: 20px; width: 100%; padding: 12px; background: #4a6cf7; border: none; border-radius: 8px; font-size: 16px; color: white; cursor: pointer; }
+#resetBtn { margin-top: 15px; width: 100%; padding: 12px; background: #f74a4a; border: none; border-radius: 8px; color: white; cursor: pointer; font-size: 16px; }
+table { width: 100%; border-collapse: collapse; margin-top: 25px; }
 table, th, td { border: 1px solid #ccc; }
-th, td { padding: 8px 10px; text-align: left; font-size: 15px;}
-#welcome { margin-top: 22px; font-size: 18px; font-weight: bold; color: #4a6cf7; }
+th, td { padding: 6px 8px; text-align: left; }
+#welcome { margin-top: 20px; font-size: 16px; font-weight: bold; color: #4a6cf7; }
 .remaining { font-size: 12px; color: #555; margin-left: auto; }
-.logo { max-width: 120px; margin-bottom: 15px; }
 </style>
 </head>
 <body>
 
 <div class="container">
-<img src="https://i.imgur.com/RKbPtQd.png" alt="이스텔리아 로고" class="logo">
-<h2>이스텔리아 아카데미 수강신청</h2>
+<h2>이스텔리아 아카데미 수강신청 폼</h2>
 
 <form id="courseForm">
 <label>이름</label>
@@ -106,6 +104,7 @@ th, td { padding: 8px 10px; text-align: left; font-size: 15px;}
 const courseCounts = {};
 document.querySelectorAll(".course").forEach(c => { courseCounts[c.value]=0; });
 
+// 남은 인원 표시
 function updateRemaining(){
     document.querySelectorAll(".course").forEach(c=>{
         const remaining = c.dataset.max - courseCounts[c.value];
@@ -119,6 +118,7 @@ const tableBody = document.getElementById("responsesTable").querySelector("tbody
 const elementSelect = document.getElementById("element");
 const welcomeDiv = document.getElementById("welcome");
 
+// 페이지 로드 시 localStorage 복원
 window.addEventListener("load", function(){
     const storedData = JSON.parse(localStorage.getItem("courseResponses") || "[]");
     storedData.forEach(entry=>{
@@ -132,6 +132,7 @@ window.addEventListener("load", function(){
     updateRemaining();
 });
 
+// 속성별 선택 제한
 document.querySelectorAll(".course").forEach(c=>{
     c.addEventListener("click", function(){
         const selectedElement = elementSelect.value;
@@ -142,6 +143,7 @@ document.querySelectorAll(".course").forEach(c=>{
     });
 });
 
+// 제출 이벤트
 form.addEventListener("submit", function(e){
     e.preventDefault();
     const name = document.getElementById("name").value;
@@ -179,8 +181,9 @@ form.addEventListener("submit", function(e){
     welcomeDiv.innerText="이스텔리아 아카데미에서 뵙겠습니다.";
 });
 
+// 관리자용 초기화 버튼
 const resetBtn = document.getElementById("resetBtn");
-const adminPassword = "이스텔리아123";
+const adminPassword = "이스텔리아123"; // 관리자 비번
 
 resetBtn.addEventListener("click", function(){
     const pw = prompt("삭제 권한 비밀번호를 입력하세요:");
