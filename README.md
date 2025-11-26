@@ -196,6 +196,43 @@ resetBtn.addEventListener("click", function(){
     }
 });
 </script>
+<script>
+// GitHub JSON 연동용 예제
+const githubDataUrl = "https://raw.githubusercontent.com/<유저명>/<저장소>/main/data.json";
+
+// 서버에서 데이터 불러오기
+async function loadSharedData() {
+    try {
+        const res = await fetch(githubDataUrl + "?t=" + new Date().getTime());
+        const data = await res.json();
+        // 과목별 count 초기화
+        Object.keys(courseCounts).forEach(c => courseCounts[c] = 0);
+        // 저장된 신청자 수 복원
+        data.responses.forEach(entry => {
+            entry.courses.forEach(c => {
+                if(courseCounts[c] !== undefined) courseCounts[c]++;
+            });
+        });
+
+        // 테이블 표시
+        tableBody.innerHTML = "";
+        data.responses.forEach(entry=>{
+            const row = tableBody.insertRow();
+            row.insertCell().innerText = entry.name;
+            row.insertCell().innerText = entry.grade;
+            row.insertCell().innerText = entry.element;
+            row.insertCell().innerText = entry.courses.join(", ");
+        });
+
+        updateRemaining();
+    } catch(e){
+        console.error("서버 데이터 로드 실패", e);
+    }
+}
+
+// 10초마다 갱신
+loadSharedData();
+setInterval(loadSharedData, 10000);
 
 </body>
 </html>
